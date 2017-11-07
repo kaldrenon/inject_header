@@ -8,7 +8,21 @@
 function inject_header_page_build(&$page) {
   drupal_set_message("build hook called");
   $page['page_top']['custom_header'] = array(
-    "#markup" => t("<h1>This HTML Was Injected!</h1>"),
+    "#markup" => t(<<<HTML
+<div class='top-bar'>
+  <b>This HTML Was Injected!</b>
+</div>
+<style>
+  .top-bar {
+    color: white;
+    padding: 15px;
+    margin: 15px;
+    text-align: center;
+    font-size: 1.5em;
+  }
+</style>"
+HTML
+),
     "#weight" => 20
   );
 }
