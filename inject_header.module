@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * A global module that injects html into the top of each page.
+ */
+
+function inject_header_page_build(&$page) {
+  drupal_set_message("build hook called");
+  $page['page_top']['custom_header'] = array(
+    "#markup" => t("<h1>This HTML Was Injected!</h1>"),
+    "#weight" => 20
+  );
+}
+
+function inject_header_help($path, $arg) {
+  switch ($path) {
+    case "admin/help#inject_header":
+      return t("does things"); 
+      break; 
+  }
+}
+?>

@@ -1,0 +1,3 @@
+name=Inject Header Module
+description=Injects some HTML into the top of every page
+core=7.x
