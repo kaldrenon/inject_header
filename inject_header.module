@@ -6,32 +6,31 @@
  */
 
 function inject_header_page_build(&$page) {
-  drupal_set_message("build hook called");
+  drupal_set_message("new build hook called");
   $page['page_top']['custom_header'] = array(
     "#markup" => t(<<<HTML
-<div class='top-bar'>
+<div class='inject-header'>
   <b>This HTML Was Injected!</b>
 </div>
-<style>
-  .top-bar {
-    color: white;
-    padding: 15px;
-    margin: 15px;
-    text-align: center;
-    font-size: 1.5em;
-  }
-</style>"
 HTML
 ),
     "#weight" => 20
+  );
+
+  $page['page_top']['custom_header']['#attached']['js'] = array(
+    drupal_get_path('module', 'inject_header') . '/inject_header.js'
+  );
+
+  $page['page_top']['custom_header']['#attached']['css'] = array(
+    drupal_get_path('module', 'inject_header') . '/inject_header.css'
   );
 }
 
 function inject_header_help($path, $arg) {
   switch ($path) {
     case "admin/help#inject_header":
-      return t("does things"); 
-      break; 
+      return t("does things");
+      break;
   }
 }
 ?>
