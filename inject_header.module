@@ -8,7 +8,7 @@
 function inject_header_page_build(&$page) {
   global $theme;
 
-  if(!preg_match('/admin\/.?/', current_path()) && $theme == 'base7') {
+  if(!preg_match('/^admin\/.?/', current_path()) && $theme == 'base7') {
     $page['page_top']['custom_header'] = array(
       "#markup" => t(
 <<<HTML
