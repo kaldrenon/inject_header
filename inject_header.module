@@ -6,24 +6,28 @@
  */
 
 function inject_header_page_build(&$page) {
-  drupal_set_message("new build hook called");
-  $page['page_top']['custom_header'] = array(
-    "#markup" => t(<<<HTML
+  global $theme;
+
+  if(!preg_match('/admin\/.?/', current_path()) && $theme == 'base7') {
+    $page['page_top']['custom_header'] = array(
+      "#markup" => t(
+<<<HTML
 <div class='inject-header'>
-  <b>This HTML Was Injected!</b>
+<b>This HTML Was Injected!</b>
 </div>
 HTML
-),
-    "#weight" => 20
-  );
+      ),
+      "#weight" => 20
+    );
 
-  $page['page_top']['custom_header']['#attached']['js'] = array(
-    drupal_get_path('module', 'inject_header') . '/inject_header.js'
-  );
+    $page['page_top']['custom_header']['#attached']['js'] = array(
+      drupal_get_path('module', 'inject_header') . '/inject_header.js'
+    );
 
-  $page['page_top']['custom_header']['#attached']['css'] = array(
-    drupal_get_path('module', 'inject_header') . '/inject_header.css'
-  );
+    $page['page_top']['custom_header']['#attached']['css'] = array(
+      drupal_get_path('module', 'inject_header') . '/inject_header.css'
+    );
+  }
 }
 
 function inject_header_help($path, $arg) {
