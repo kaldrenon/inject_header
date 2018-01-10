@@ -12,9 +12,7 @@ function inject_header_page_build(&$page) {
     $page['page_top']['custom_header'] = array(
       "#markup" => t(
 <<<HTML
-<div class='inject-header'>
-<b>This HTML Was Injected!</b>
-</div>
+<div class="custom-header"></div>
 HTML
       ),
       "#weight" => 20
